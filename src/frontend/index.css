@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Font Faces ──────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+/* ─── Design Tokens ───────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Navy + Amber palette (light mode is intentionally rich/dark-accented) */
+    --background: 0.97 0.008 250;
+    --foreground: 0.18 0.04 255;
+
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.04 255;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.04 255;
+
+    /* Deep navy as primary */
+    --primary: 0.22 0.08 265;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.92 0.015 250;
+    --secondary-foreground: 0.22 0.08 265;
+
+    --muted: 0.93 0.01 250;
+    --muted-foreground: 0.52 0.04 255;
+
+    /* Amber accent */
+    --accent: 0.75 0.18 65;
+    --accent-foreground: 0.15 0.06 265;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.015 255;
+    --input: 0.88 0.015 255;
+    --ring: 0.35 0.1 265;
+
+    /* Success / warning */
+    --success: 0.62 0.17 145;
+    --warning: 0.75 0.18 65;
+
+    --chart-1: 0.45 0.18 265;
+    --chart-2: 0.62 0.17 145;
+    --chart-3: 0.75 0.18 65;
+    --chart-4: 0.577 0.245 27.325;
+    --chart-5: 0.55 0.12 300;
+
+    --sidebar: 0.97 0.008 250;
+    --sidebar-foreground: 0.18 0.04 255;
+    --sidebar-primary: 0.22 0.08 265;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.92 0.015 250;
+    --sidebar-accent-foreground: 0.22 0.08 265;
+    --sidebar-border: 0.88 0.015 255;
+    --sidebar-ring: 0.35 0.1 265;
+
+    /* App-specific custom tokens */
+    --navy-deep: 0.16 0.07 265;
+    --navy-mid: 0.22 0.08 265;
+    --navy-surface: 0.28 0.06 260;
+    --amber-vivid: 0.78 0.185 70;
+    --amber-muted: 0.7 0.14 70;
+    --rail-track: 0.45 0.06 255;
+  }
+
+  .dark {
+    --background: 0.13 0.06 265;
+    --foreground: 0.95 0.01 250;
+
+    --card: 0.18 0.06 265;
+    --card-foreground: 0.95 0.01 250;
+
+    --popover: 0.22 0.07 265;
+    --popover-foreground: 0.95 0.01 250;
+
+    --primary: 0.78 0.185 70;
+    --primary-foreground: 0.13 0.06 265;
+
+    --secondary: 0.25 0.065 265;
+    --secondary-foreground: 0.95 0.01 250;
+
+    --muted: 0.25 0.065 265;
+    --muted-foreground: 0.65 0.04 255;
+
+    --accent: 0.78 0.185 70;
+    --accent-foreground: 0.13 0.06 265;
+
+    --destructive: 0.7 0.22 22;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.3 0.06 265;
+    --input: 0.28 0.06 265;
+    --ring: 0.65 0.15 70;
+
+    --success: 0.65 0.18 145;
+    --warning: 0.78 0.185 70;
+
+    --chart-1: 0.65 0.2 70;
+    --chart-2: 0.65 0.18 145;
+    --chart-3: 0.55 0.18 265;
+    --chart-4: 0.7 0.22 22;
+    --chart-5: 0.6 0.14 300;
+
+    --sidebar: 0.16 0.07 265;
+    --sidebar-foreground: 0.95 0.01 250;
+    --sidebar-primary: 0.78 0.185 70;
+    --sidebar-primary-foreground: 0.13 0.06 265;
+    --sidebar-accent: 0.25 0.065 265;
+    --sidebar-accent-foreground: 0.95 0.01 250;
+    --sidebar-border: 0.3 0.06 265;
+    --sidebar-ring: 0.65 0.15 70;
+
+    --navy-deep: 0.1 0.05 265;
+    --navy-mid: 0.16 0.07 265;
+    --navy-surface: 0.22 0.07 265;
+    --amber-vivid: 0.78 0.185 70;
+    --amber-muted: 0.7 0.14 70;
+    --rail-track: 0.35 0.05 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* ─── Custom Utilities ────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-numeric {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* Railway track decorative lines */
+  .rail-divider {
+    position: relative;
+  }
+
+  .rail-divider::before,
+  .rail-divider::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: oklch(var(--rail-track));
+  }
+
+  .rail-divider::before { top: 3px; }
+  .rail-divider::after  { top: 8px; }
+
+  /* Answer option states */
+  .option-default {
+    @apply border-border bg-card text-card-foreground hover:border-primary/40 hover:bg-primary/5;
+    transition: all 0.15s ease;
+  }
+
+  .option-selected {
+    @apply border-primary bg-primary/10 text-primary font-semibold;
+  }
+
+  .option-correct {
+    @apply border-green-500 bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300 dark:border-green-500;
+  }
+
+  .option-incorrect {
+    @apply border-red-500 bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300 dark:border-red-500;
+  }
+
+  .option-missed {
+    @apply border-green-500 bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300;
+  }
+
+  /* Palette dot states */
+  .palette-unattempted {
+    @apply bg-muted text-muted-foreground border border-border;
+  }
+
+  .palette-answered {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .palette-skipped {
+    @apply bg-warning text-accent-foreground;
+  }
+
+  .palette-current {
+    @apply ring-2 ring-ring ring-offset-1;
+  }
+
+  /* Difficulty badges */
+  .badge-easy   { @apply bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400; }
+  .badge-medium { @apply bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400; }
+  .badge-hard   { @apply bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400; }
+
+  /* Timer states */
+  .timer-normal  { @apply text-foreground; }
+  .timer-warning { @apply text-amber-600 dark:text-amber-400 animate-pulse; }
+  .timer-danger  { @apply text-red-600 dark:text-red-400 animate-pulse font-bold; }
+}
+
+/* ─── Animations ──────────────────────────────────────────────────── */
+@layer utilities {
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes trainMove {
+    from { transform: translateX(-10px); }
+    to   { transform: translateX(10px); }
+  }
+
+  .animate-fade-in-up { animation: fadeInUp 0.5s ease forwards; }
+  .animate-scale-in   { animation: scaleIn 0.3s ease forwards; }
+  .animate-slide-in-right { animation: slideInRight 0.4s ease forwards; }
+
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+}
